@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_page_footer_footer_metas",
+  "info": {
+    "name": "footerMeta",
+    "icon": "tachometer-alt"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "pages": {
+      "collection": "page"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "collectionName": "components_page_content_tab_items",
+  "info": {
+    "name": "tabItem",
+    "icon": "file-image"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "model": "page"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "lead": {
+      "type": "string",
+      "required": true
+    },
+    "callToAction": {
+      "type": "string"
+    },
+    "media": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "teaser": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "globe",
+        "mountain",
+        "gear",
+        "user",
+        "flip",
+        "gearUser",
+        "heart",
+        "jobs",
+        "phone",
+        "mail"
+      ],
+      "required": false
+    }
+  }
+}

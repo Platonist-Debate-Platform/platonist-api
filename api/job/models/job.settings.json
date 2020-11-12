@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "name": "job"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "lead": {
+      "type": "text"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "page-content.text",
+        "page-content.text-with-image",
+        "page-content.text-with-list"
+      ],
+      "required": true
+    },
+    "previewImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": ["images", "videos"],
+      "plugin": "upload",
+      "required": false
+    },
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-content.jumbotron",
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "homepage": {
+      "model": "homepage"
+    },
+    "contact": {
+      "model": "author"
+    },
+    "location": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "page": {
+      "model": "page"
+    },
+    "contactBox": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-content.contact-box"
+    }
+  }
+}

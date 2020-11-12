@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_page_content_contact_boxes",
+  "info": {
+    "name": "contactBox",
+    "icon": "mail-bulk"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "lead": {
+      "type": "string",
+      "required": true
+    },
+    "author": {
+      "model": "author"
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
+    },
+    "isFluid": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

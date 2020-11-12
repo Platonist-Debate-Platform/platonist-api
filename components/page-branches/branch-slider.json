@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_page_branches_branch_sliders",
+  "info": {
+    "name": "branchSlider",
+    "icon": "bars"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "lead": {
+      "type": "text"
+    },
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-branches.branch-item"
+    },
+    "callToAction": {
+      "type": "string",
+      "unique": false
+    },
+    "page": {
+      "model": "page"
+    },
+    "hidden": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

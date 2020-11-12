@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_page_jobs_job_lists",
+  "info": {
+    "name": "jobList",
+    "icon": "file-word"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "lead": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "latest",
+        "all"
+      ],
+      "required": true,
+      "default": "all"
+    },
+    "page": {
+      "model": "page"
+    },
+    "homepage": {
+      "model": "homepage"
+    }
+  }
+}

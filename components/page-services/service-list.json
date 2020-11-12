@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_page_services_service_lists",
+  "info": {
+    "name": "serviceList",
+    "icon": "network-wired"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}

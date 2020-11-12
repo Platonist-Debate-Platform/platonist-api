@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "company_locations",
+  "info": {
+    "name": "Company Location"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "city": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "email": {
+      "type": "email",
+      "default": "info@globalct.com"
+    },
+    "phone": {
+      "type": "string",
+      "regex": "(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\\s*[)]?[-\\s\\.]?[(]?[0-9]{1,3}[)]?([-\\s\\.]?[0-9]{3})([-\\s\\.]?[0-9]{3,4})"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "hannover",
+        "berlin",
+        "braunschweig",
+        "pristina",
+        "tirana"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "street": {
+      "type": "string",
+      "required": true
+    },
+    "zip": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

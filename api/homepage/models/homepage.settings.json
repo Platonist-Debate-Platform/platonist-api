@@ -1,0 +1,94 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Homepage",
+  "info": {
+    "name": "Homepage"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^(?!:\\/\\/)([a-zA-Z0-9-_]+\\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\\.[a-zA-Z]{2,11}?$"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "pages": {
+      "via": "homepage",
+      "collection": "page"
+    },
+    "meta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-info.meta",
+      "required": false
+    },
+    "admin": {
+      "via": "homepage",
+      "model": "author"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "page-content.jumbotron",
+        "page-content.text-with-image",
+        "page-content.text",
+        "page-services.service-slider",
+        "page-content.tab",
+        "page-branches.relevant-branches",
+        "page-services.relevant-services",
+        "page-content.benefit-list",
+        "page-jobs.job-list",
+        "page-branches.branch-slider"
+      ]
+    },
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-info.logo",
+      "required": true
+    },
+    "contact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-content.contact-box",
+      "required": true
+    },
+    "tools": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-footer.footer-tools"
+    },
+    "copyright": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-footer.footer-meta",
+      "required": true
+    },
+    "menuTitle": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

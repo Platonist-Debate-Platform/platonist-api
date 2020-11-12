@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_page_services_relevant_services",
+  "info": {
+    "name": "relevantServices",
+    "icon": "anchor"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "lead": {
+      "type": "string"
+    },
+    "relevant": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-services.service-item",
+      "max": 4,
+      "required": true,
+      "min": 1
+    },
+    "page": {
+      "model": "page"
+    }
+  }
+}

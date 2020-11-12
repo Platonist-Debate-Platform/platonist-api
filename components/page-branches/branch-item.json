@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_page_branches_branch_items",
+  "info": {
+    "name": "branchItem",
+    "icon": "sitemap"
+  },
+  "options": {},
+  "attributes": {
+    "branch": {
+      "model": "branch"
+    }
+  }
+}

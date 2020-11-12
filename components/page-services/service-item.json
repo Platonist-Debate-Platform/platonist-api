@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_page_services_service_items",
+  "info": {
+    "name": "serviceItem",
+    "icon": "broadcast-tower"
+  },
+  "options": {},
+  "attributes": {
+    "service": {
+      "model": "service"
+    }
+  }
+}

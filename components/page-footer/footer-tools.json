@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_page_footer_footer_tools",
+  "info": {
+    "name": "footerTools",
+    "icon": "fan"
+  },
+  "options": {},
+  "attributes": {
+    "socials": {
+      "unique": true,
+      "collection": "social"
+    },
+    "title": {
+      "type": "string",
+      "private": false,
+      "required": true
+    }
+  }
+}

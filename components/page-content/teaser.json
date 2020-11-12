@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_content_teasers",
+  "info": {
+    "name": "teaser",
+    "icon": "bacon"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "lead": {
+      "type": "text",
+      "required": true
+    },
+    "isFluid": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "collectionName": "components_page_content_text_with_images",
+  "info": {
+    "name": "textWithImage",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "mediaPosition": {
+      "type": "enumeration",
+      "enum": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "required": true,
+      "unique": false
+    },
+    "media": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "isFluid": {
+      "type": "boolean",
+      "default": false
+    },
+    "showCaption": {
+      "type": "boolean",
+      "default": false
+    },
+    "mediaSize": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "default",
+        "large"
+      ],
+      "default": "default",
+      "required": true
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

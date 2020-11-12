@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>bakery</title>
+  </head>
+  <body>
+    <!-- add socket.io script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
+    <script>
+      // connect user throught socket
+      var socket = io.connect('http://localhost:1337');
+      // listen for event name 'hello' & log it
+      let count = 0;
+      socket.on('hello', (res) => {
+        const div = document.getElementById('myId');
+        count++
+        div.innerHTML = count;
+      });
+    </script>
+    <h1>hallo Welt</h1>
+    <div id="myId">
+      0
+    </div>
+  </body>
+</html>

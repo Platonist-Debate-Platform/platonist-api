@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_page_services_service_sliders",
+  "info": {
+    "name": "serviceSlider",
+    "icon": "images"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "private": false,
+      "required": true,
+      "unique": true
+    },
+    "lead": {
+      "type": "text"
+    },
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-services.service-item"
+    },
+    "callToAction": {
+      "type": "string"
+    },
+    "page": {
+      "model": "page"
+    },
+    "hidden": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

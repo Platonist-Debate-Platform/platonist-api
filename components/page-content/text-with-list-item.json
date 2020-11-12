@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_page_content_text_with_list_items",
+  "info": {
+    "name": "textWithListItem",
+    "icon": "list-alt"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

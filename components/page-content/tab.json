@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_content_tabs",
+  "info": {
+    "name": "tab",
+    "icon": "table"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "private": true,
+      "required": true
+    },
+    "tabItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-content.tab-item",
+      "max": 3,
+      "min": 1
+    }
+  }
+}

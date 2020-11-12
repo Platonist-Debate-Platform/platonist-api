@@ -1,0 +1,67 @@
+{
+  "collectionName": "components_page_content_jumbotrons",
+  "info": {
+    "name": "Jumbotron",
+    "icon": "image"
+  },
+  "options": {},
+  "attributes": {
+    "teaser": {
+      "type": "text"
+    },
+    "callToAction": {
+      "type": "string"
+    },
+    "media": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "isFluid": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "isFullScreen": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "page": {
+      "model": "page"
+    },
+    "titleSmall": {
+      "type": "string"
+    },
+    "hasShape": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "textAlign": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "center",
+        "full"
+      ],
+      "default": "left",
+      "required": true
+    },
+    "disableBackground": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

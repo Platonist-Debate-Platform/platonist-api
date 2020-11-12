@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_page_footer_footer_branches",
+  "info": {
+    "name": "footerBranches",
+    "icon": "arrows-alt-h"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "collection": "branch"
+    }
+  }
+}

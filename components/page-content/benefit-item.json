@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_page_content_benefit_items",
+  "info": {
+    "name": "benefitItem",
+    "icon": "user-plus"
+  },
+  "options": {},
+  "attributes": {
+    "benefit": {
+      "model": "benefit"
+    }
+  }
+}

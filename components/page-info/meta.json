@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_page_info_metas",
+  "info": {
+    "name": "Meta",
+    "icon": "exclamation-circle"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "description",
+        "keywords",
+        "copyright",
+        "location"
+      ]
+    }
+  }
+}

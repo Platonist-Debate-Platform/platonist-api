@@ -1,0 +1,93 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Page",
+  "info": {
+    "name": "Page"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "homepage": {
+      "model": "homepage",
+      "via": "pages"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "inNavigation": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "inFooter": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "page": {
+      "columnName": "parentPage",
+      "model": "page",
+      "via": "pages"
+    },
+    "pages": {
+      "collection": "page",
+      "via": "page"
+    },
+    "meta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-info.meta"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "page-content.jumbotron",
+        "page-content.text-with-image",
+        "page-content.text",
+        "page-services.service-list",
+        "page-services.relevant-services",
+        "page-services.service-slider",
+        "page-content.tab",
+        "page-branches.branch-list",
+        "page-branches.relevant-branches",
+        "page-content.benefit-list",
+        "page-jobs.job-list",
+        "page-content.teaser",
+        "page-content.company-location-list"
+      ],
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "unique": true
+    },
+    "contact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-content.contact-box"
+    },
+    "footerNav": {
+      "type": "dynamiczone",
+      "components": [
+        "page-footer.footer-services",
+        "page-footer.footer-branches",
+        "page-footer.footer-jobs"
+      ],
+      "max": 1
+    },
+    "ordering": {
+      "type": "integer",
+      "default": 1,
+      "required": false,
+      "min": 1
+    }
+  }
+}

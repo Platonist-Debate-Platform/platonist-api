@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_page_footer_footer_jobs",
+  "info": {
+    "name": "footerJobs",
+    "icon": "arrows-alt"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "collection": "job"
+    }
+  }
+}
