@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "debates",
+  "info": {
+    "name": "Debate",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 5,
+      "maxLength": 255
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true,
+      "minLength": 5
+    },
+    "articleA": {
+      "model": "article"
+    },
+    "articleB": {
+      "model": "article"
+    },
+    "comments": {
+      "collection": "comment"
+    }
+  }
+}

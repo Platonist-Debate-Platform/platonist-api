@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/benefits": {
+    "/comments": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Benefit"
+                    "$ref": "#/components/schemas/Comment"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Comment"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Comment"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Comment"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBenefit"
+                "$ref": "#/components/schemas/NewComment"
               }
             }
           }
         }
       }
     },
-    "/benefits/count": {
+    "/comments/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Comment"
         ],
         "parameters": []
       }
     },
-    "/benefits/{id}": {
+    "/comments/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Comment"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Comment"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Comment"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Comment"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBenefit"
+                "$ref": "#/components/schemas/NewComment"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Comment"
         ],
         "parameters": [
           {
@@ -514,75 +514,132 @@
   },
   "components": {
     "schemas": {
-      "Benefit": {
+      "Comment": {
         "required": [
           "id",
-          "title",
-          "icon"
+          "comment",
+          "timestamp"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
-          },
-          "lead": {
-            "type": "string"
-          },
-          "icon": {
+          "comment": {
             "type": "string",
-            "enum": [
-              "globe",
-              "mountain",
-              "gear",
-              "user",
-              "flip",
-              "gearUser",
-              "heart",
-              "jobs",
-              "phone",
-              "mail",
-              "flexibel",
-              "inspiring",
-              "partnership",
-              "authentic",
-              "sustainable"
-            ]
+            "maxLength": 1000,
+            "minLength": 3
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "required": [
+              "id",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "firstname": {
+                "type": "string"
+              },
+              "lastname": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "registrationToken": {
+                "type": "string"
+              },
+              "isActive": {
+                "type": "boolean"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "blocked": {
+                "type": "boolean"
+              }
+            }
+          },
+          "replies": {
+            "required": [
+              "id",
+              "comment",
+              "timestamp"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "comment": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string"
+              },
+              "user": {
+                "type": "string"
+              },
+              "replies": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
-      "NewBenefit": {
+      "NewComment": {
         "required": [
-          "title",
-          "icon"
+          "comment",
+          "timestamp"
         ],
         "properties": {
-          "title": {
-            "type": "string"
-          },
-          "lead": {
-            "type": "string"
-          },
-          "icon": {
+          "comment": {
             "type": "string",
-            "enum": [
-              "globe",
-              "mountain",
-              "gear",
-              "user",
-              "flip",
-              "gearUser",
-              "heart",
-              "jobs",
-              "phone",
-              "mail",
-              "flexibel",
-              "inspiring",
-              "partnership",
-              "authentic",
-              "sustainable"
-            ]
+            "maxLength": 1000,
+            "minLength": 3
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "type": "string"
+          },
+          "replies": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -596,7 +653,7 @@
   },
   "tags": [
     {
-      "name": "Benefit"
+      "name": "Comment"
     }
   ]
 }

@@ -559,6 +559,12 @@
               "linkedin",
               "instagram"
             ]
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
+            "type": "string"
           }
         }
       }

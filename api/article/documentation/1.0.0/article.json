@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/benefits": {
+    "/articles": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Benefit"
+                    "$ref": "#/components/schemas/Article"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Article"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Article"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Article"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBenefit"
+                "$ref": "#/components/schemas/NewArticle"
               }
             }
           }
         }
       }
     },
-    "/benefits/count": {
+    "/articles/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Article"
         ],
         "parameters": []
       }
     },
-    "/benefits/{id}": {
+    "/articles/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Article"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Article"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Article"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Article"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBenefit"
+                "$ref": "#/components/schemas/NewArticle"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Article"
         ],
         "parameters": [
           {
@@ -514,75 +514,140 @@
   },
   "components": {
     "schemas": {
-      "Benefit": {
+      "Article": {
         "required": [
           "id",
-          "title",
-          "icon"
+          "isOffline"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
+          "isOffline": {
+            "type": "boolean",
+            "default": true
           },
-          "lead": {
+          "description": {
             "type": "string"
           },
           "icon": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "keywords": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "ratings": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "relevance",
+                "argumentation",
+                "quality"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "relevance": {
+                  "type": "integer"
+                },
+                "argumentation": {
+                  "type": "integer"
+                },
+                "quality": {
+                  "type": "integer"
+                },
+                "user": {
+                  "type": "string"
+                },
+                "articles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "published_at": {
             "type": "string",
-            "enum": [
-              "globe",
-              "mountain",
-              "gear",
-              "user",
-              "flip",
-              "gearUser",
-              "heart",
-              "jobs",
-              "phone",
-              "mail",
-              "flexibel",
-              "inspiring",
-              "partnership",
-              "authentic",
-              "sustainable"
-            ]
+            "format": "date-time"
           }
         }
       },
-      "NewBenefit": {
+      "NewArticle": {
         "required": [
-          "title",
-          "icon"
+          "isOffline"
         ],
         "properties": {
-          "title": {
-            "type": "string"
+          "isOffline": {
+            "type": "boolean",
+            "default": true
           },
-          "lead": {
+          "description": {
             "type": "string"
           },
           "icon": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "keywords": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "ratings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "published_at": {
             "type": "string",
-            "enum": [
-              "globe",
-              "mountain",
-              "gear",
-              "user",
-              "flip",
-              "gearUser",
-              "heart",
-              "jobs",
-              "phone",
-              "mail",
-              "flexibel",
-              "inspiring",
-              "partnership",
-              "authentic",
-              "sustainable"
-            ]
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -596,7 +661,7 @@
   },
   "tags": [
     {
-      "name": "Benefit"
+      "name": "Article"
     }
   ]
 }

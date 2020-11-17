@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ratings",
+  "info": {
+    "name": "Rating"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "relevance": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "max": 5,
+      "required": true
+    },
+    "argumentation": {
+      "type": "integer",
+      "required": true,
+      "default": 1,
+      "max": 5,
+      "min": 1
+    },
+    "quality": {
+      "type": "integer",
+      "required": true,
+      "max": 5,
+      "min": 1,
+      "default": 1
+    },
+    "user": {
+      "plugin": "admin",
+      "model": "user"
+    },
+    "articles": {
+      "via": "ratings",
+      "collection": "article"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/benefits": {
+    "/ratings": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Benefit"
+                    "$ref": "#/components/schemas/Rating"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Rating"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Rating"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Rating"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBenefit"
+                "$ref": "#/components/schemas/NewRating"
               }
             }
           }
         }
       }
     },
-    "/benefits/count": {
+    "/ratings/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Rating"
         ],
         "parameters": []
       }
     },
-    "/benefits/{id}": {
+    "/ratings/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Rating"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Rating"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Benefit"
+                  "$ref": "#/components/schemas/Rating"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Rating"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBenefit"
+                "$ref": "#/components/schemas/NewRating"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Benefit"
+          "Rating"
         ],
         "parameters": [
           {
@@ -514,75 +514,169 @@
   },
   "components": {
     "schemas": {
-      "Benefit": {
+      "Rating": {
         "required": [
           "id",
-          "title",
-          "icon"
+          "relevance",
+          "argumentation",
+          "quality"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
+          "relevance": {
+            "type": "integer",
+            "default": 1
           },
-          "lead": {
-            "type": "string"
+          "argumentation": {
+            "type": "integer",
+            "default": 1
           },
-          "icon": {
+          "quality": {
+            "type": "integer",
+            "default": 1
+          },
+          "user": {
+            "required": [
+              "id",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "firstname": {
+                "type": "string"
+              },
+              "lastname": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "registrationToken": {
+                "type": "string"
+              },
+              "isActive": {
+                "type": "boolean"
+              },
+              "roles": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "blocked": {
+                "type": "boolean"
+              }
+            }
+          },
+          "articles": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "isOffline"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "isOffline": {
+                  "type": "boolean"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "keywords": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "language": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "ratings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "published_at": {
             "type": "string",
-            "enum": [
-              "globe",
-              "mountain",
-              "gear",
-              "user",
-              "flip",
-              "gearUser",
-              "heart",
-              "jobs",
-              "phone",
-              "mail",
-              "flexibel",
-              "inspiring",
-              "partnership",
-              "authentic",
-              "sustainable"
-            ]
+            "format": "date-time"
           }
         }
       },
-      "NewBenefit": {
+      "NewRating": {
         "required": [
-          "title",
-          "icon"
+          "relevance",
+          "argumentation",
+          "quality"
         ],
         "properties": {
-          "title": {
+          "relevance": {
+            "type": "integer",
+            "default": 1
+          },
+          "argumentation": {
+            "type": "integer",
+            "default": 1
+          },
+          "quality": {
+            "type": "integer",
+            "default": 1
+          },
+          "user": {
             "type": "string"
           },
-          "lead": {
-            "type": "string"
+          "articles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "icon": {
+          "published_at": {
             "type": "string",
-            "enum": [
-              "globe",
-              "mountain",
-              "gear",
-              "user",
-              "flip",
-              "gearUser",
-              "heart",
-              "jobs",
-              "phone",
-              "mail",
-              "flexibel",
-              "inspiring",
-              "partnership",
-              "authentic",
-              "sustainable"
-            ]
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -596,7 +690,7 @@
   },
   "tags": [
     {
-      "name": "Benefit"
+      "name": "Rating"
     }
   ]
 }

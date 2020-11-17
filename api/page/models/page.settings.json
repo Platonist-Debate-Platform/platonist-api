@@ -2,11 +2,13 @@
   "kind": "collectionType",
   "collectionName": "Page",
   "info": {
-    "name": "Page"
+    "name": "Page",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
@@ -52,16 +54,7 @@
         "page-content.jumbotron",
         "page-content.text-with-image",
         "page-content.text",
-        "page-services.service-list",
-        "page-services.relevant-services",
-        "page-services.service-slider",
-        "page-content.tab",
-        "page-branches.branch-list",
-        "page-branches.relevant-branches",
-        "page-content.benefit-list",
-        "page-jobs.job-list",
-        "page-content.teaser",
-        "page-content.company-location-list"
+        "page-content.teaser"
       ],
       "required": false
     },
@@ -76,11 +69,7 @@
     },
     "footerNav": {
       "type": "dynamiczone",
-      "components": [
-        "page-footer.footer-services",
-        "page-footer.footer-branches",
-        "page-footer.footer-jobs"
-      ],
+      "components": [],
       "max": 1
     },
     "ordering": {

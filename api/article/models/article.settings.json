@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "name": "Article",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "isOffline": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "ratings": {
+      "collection": "rating",
+      "via": "articles",
+      "dominant": true
+    }
+  }
+}

@@ -42,8 +42,8 @@
       "required": false
     },
     "homepage": {
-      "model": "homepage",
-      "via": "admin"
+      "via": "admin",
+      "model": "homepage"
     },
     "about": {
       "type": "richtext"
