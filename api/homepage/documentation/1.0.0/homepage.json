@@ -763,7 +763,8 @@
                       "enum": [
                         "page-content.jumbotron",
                         "page-content.text-with-image",
-                        "page-content.text"
+                        "page-content.text",
+                        "debates.debate-list"
                       ]
                     },
                     "id": {
@@ -951,7 +952,8 @@
                       "enum": [
                         "page-content.jumbotron",
                         "page-content.text-with-image",
-                        "page-content.text"
+                        "page-content.text",
+                        "debates.debate-list"
                       ]
                     },
                     "id": {
@@ -1081,7 +1083,8 @@
                       "enum": [
                         "page-content.jumbotron",
                         "page-content.text-with-image",
-                        "page-content.text"
+                        "page-content.text",
+                        "debates.debate-list"
                       ]
                     },
                     "id": {
@@ -1106,6 +1109,28 @@
                     "id",
                     "title",
                     "active"
+                  ]
+                },
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "page-content.jumbotron",
+                        "page-content.text-with-image",
+                        "page-content.text",
+                        "debates.debate-list"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
                   ]
                 }
               ]
@@ -1467,7 +1492,8 @@
                       "enum": [
                         "page-content.jumbotron",
                         "page-content.text-with-image",
-                        "page-content.text"
+                        "page-content.text",
+                        "debates.debate-list"
                       ]
                     },
                     "id": {
@@ -1655,7 +1681,8 @@
                       "enum": [
                         "page-content.jumbotron",
                         "page-content.text-with-image",
-                        "page-content.text"
+                        "page-content.text",
+                        "debates.debate-list"
                       ]
                     },
                     "id": {
@@ -1785,7 +1812,8 @@
                       "enum": [
                         "page-content.jumbotron",
                         "page-content.text-with-image",
-                        "page-content.text"
+                        "page-content.text",
+                        "debates.debate-list"
                       ]
                     },
                     "id": {
@@ -1810,6 +1838,28 @@
                     "id",
                     "title",
                     "active"
+                  ]
+                },
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "page-content.jumbotron",
+                        "page-content.text-with-image",
+                        "page-content.text",
+                        "debates.debate-list"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
                   ]
                 }
               ]

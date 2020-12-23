@@ -1,5 +1,6 @@
 'use strict';
 
+const socket = require('socket.io');
 
 /**
  * An asynchronous bootstrap function that runs before
@@ -12,17 +13,47 @@
  */
 
 module.exports = () => {
-  var io = require('socket.io')(strapi.server);
-  
+  var io = socket(strapi.server, {
+    cors: {
+      origin: 'http://localhost:3000'
+    }
+  });
+  const clients = [];
+
   io.on('connection', function(socket){
-    const interval = setInterval(() => {
-      socket.emit('hello', JSON.stringify({message: 'Hello food lover'}));
-    }, 1000);
+    
+    // TODO - Change ID
+    socket.user_id = (Math.random() * 100000000000000);
+    clients.push(socket);
     
     socket.on('disconnect', () => {
-      console.log('a user disconnected');
-      clearInterval(interval);
+      // Remove client on disconnect
+      clients.forEach((client, index) => {
+        if (client.user_id === socket.user_id) {
+          clients.splice(index, 1);
+        }
+      });
     });
   });
+  
+  const models = [];
+  
+  Object.keys(strapi.models).forEach(key => {
+    if (key !== 'core_store' && key !== 'strapi_webhooks') {
+      models.push(key);
+    }
+  }); 
+  
   strapi.io = io;
+  strapi.emitSocket = {};
+  
+  models.forEach(model => {
+    Object.assign(strapi.emitSocket, {
+      [model]: {
+        create: data => io.emit(`${model}.create`, data),
+        delete: data => io.emit(`${model}.delete`, data),
+        update: data => io.emit(`${model}.update`, data),
+      }, 
+    })
+  });
 };

@@ -55,7 +55,8 @@
       "components": [
         "page-content.jumbotron",
         "page-content.text-with-image",
-        "page-content.text"
+        "page-content.text",
+        "debates.debate-list"
       ]
     },
     "logo": {

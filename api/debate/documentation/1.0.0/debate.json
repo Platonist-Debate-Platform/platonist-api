@@ -510,6 +510,142 @@
           }
         ]
       }
+    },
+    "/debates/{id}/comments": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Debate"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/debates/findByTitle/{title}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Debate"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -648,36 +784,103 @@
               }
             }
           },
-          "comments": {
+          "page": {
             "required": [
               "id",
-              "comment",
-              "timestamp"
+              "title",
+              "active",
+              "inNavigation",
+              "inFooter"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "comment": {
+              "title": {
                 "type": "string"
               },
-              "timestamp": {
+              "homepage": {
                 "type": "string"
               },
-              "user": {
+              "active": {
+                "type": "boolean"
+              },
+              "inNavigation": {
+                "type": "boolean"
+              },
+              "inFooter": {
+                "type": "boolean"
+              },
+              "page": {
                 "type": "string"
               },
-              "replies": {
+              "pages": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "meta": {
+                "type": "component"
+              },
+              "content": {
+                "type": "dynamiczone"
+              },
+              "name": {
                 "type": "string"
               },
-              "published_at": {
-                "type": "string"
+              "contact": {
+                "type": "component"
+              },
+              "footerNav": {
+                "type": "dynamiczone"
+              },
+              "ordering": {
+                "type": "integer"
               },
               "created_by": {
                 "type": "string"
               },
               "updated_by": {
                 "type": "string"
+              }
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "comment"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "replies": {
+                  "type": "string"
+                },
+                "debate": {
+                  "type": "string"
+                },
+                "moderator": {
+                  "type": "string"
+                },
+                "user": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -711,8 +914,14 @@
           "articleB": {
             "type": "string"
           },
-          "comments": {
+          "page": {
             "type": "string"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "published_at": {
             "type": "string",

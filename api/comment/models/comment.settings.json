@@ -17,16 +17,20 @@
       "minLength": 3,
       "required": true
     },
-    "timestamp": {
-      "type": "datetime",
-      "required": true
+    "replies": {
+      "collection": "comment"
     },
-    "user": {
+    "debate": {
+      "model": "debate",
+      "via": "comments"
+    },
+    "moderator": {
       "plugin": "admin",
       "model": "user"
     },
-    "replies": {
-      "collection": "comment"
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

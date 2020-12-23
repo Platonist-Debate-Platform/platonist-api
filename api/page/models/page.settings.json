@@ -54,7 +54,8 @@
         "page-content.jumbotron",
         "page-content.text-with-image",
         "page-content.text",
-        "page-content.teaser"
+        "page-content.teaser",
+        "debates.debate-list"
       ],
       "required": false
     },

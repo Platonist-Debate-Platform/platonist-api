@@ -47,6 +47,22 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/debates/:id/comments",
+      "handler": "debate.findComments",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/debates/findByTitle/:title",
+      "handler": "debate.findByTitle",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

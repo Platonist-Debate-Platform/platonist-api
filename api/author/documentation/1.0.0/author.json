@@ -722,6 +722,15 @@
               "role": {
                 "type": "string"
               },
+              "avatar": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

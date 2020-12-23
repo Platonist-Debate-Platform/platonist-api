@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_debates_debate_lists",
+  "info": {
+    "name": "DebateList",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    }
+  }
+}

@@ -517,8 +517,7 @@
       "Comment": {
         "required": [
           "id",
-          "comment",
-          "timestamp"
+          "comment"
         ],
         "properties": {
           "id": {
@@ -529,11 +528,87 @@
             "maxLength": 1000,
             "minLength": 3
           },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time"
+          "replies": {
+            "required": [
+              "id",
+              "comment"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "comment": {
+                "type": "string"
+              },
+              "replies": {
+                "type": "string"
+              },
+              "debate": {
+                "type": "string"
+              },
+              "moderator": {
+                "type": "string"
+              },
+              "user": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
-          "user": {
+          "debate": {
+            "required": [
+              "id",
+              "title",
+              "shortDescription"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "subTitle": {
+                "type": "string"
+              },
+              "shortDescription": {
+                "type": "string"
+              },
+              "articleA": {
+                "type": "string"
+              },
+              "articleB": {
+                "type": "string"
+              },
+              "page": {
+                "type": "string"
+              },
+              "comments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "moderator": {
             "required": [
               "id",
               "email"
@@ -577,29 +652,50 @@
               }
             }
           },
-          "replies": {
+          "user": {
             "required": [
               "id",
-              "comment",
-              "timestamp"
+              "username",
+              "email"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "comment": {
+              "username": {
                 "type": "string"
               },
-              "timestamp": {
+              "email": {
                 "type": "string"
               },
-              "user": {
+              "provider": {
                 "type": "string"
               },
-              "replies": {
+              "password": {
                 "type": "string"
               },
-              "published_at": {
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
                 "type": "string"
               },
               "created_by": {
@@ -618,8 +714,7 @@
       },
       "NewComment": {
         "required": [
-          "comment",
-          "timestamp"
+          "comment"
         ],
         "properties": {
           "comment": {
@@ -627,14 +722,16 @@
             "maxLength": 1000,
             "minLength": 3
           },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "user": {
+          "replies": {
             "type": "string"
           },
-          "replies": {
+          "debate": {
+            "type": "string"
+          },
+          "moderator": {
+            "type": "string"
+          },
+          "user": {
             "type": "string"
           },
           "published_at": {
