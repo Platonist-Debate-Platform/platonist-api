@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_profile_details",
+  "info": {
+    "name": "detail",
+    "icon": "address-book"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

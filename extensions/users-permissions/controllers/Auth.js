@@ -621,4 +621,15 @@ module.exports = {
       return ctx.badRequest(null, err);
     }
   },
+
+  async logout(ctx) {
+    ctx.cookies.set("Authorization", null);
+    ctx.cookies.set("Authorization.sig", null);
+    ctx.send({
+      status: 'Unauthorized',
+      authorized: true,
+      message: "Successfully destroyed session",
+      user: null,
+    });
+  },
 };

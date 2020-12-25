@@ -774,7 +774,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -964,7 +965,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -1096,7 +1098,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -1132,7 +1135,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -1164,13 +1168,38 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
                       "type": "string"
                     },
                     "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "page-content.jumbotron",
+                        "page-content.text-with-image",
+                        "page-content.text",
+                        "page-content.teaser",
+                        "debates.debate-list",
+                        "profile.detail"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
                       "type": "string"
                     }
                   },
@@ -1353,7 +1382,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -1543,7 +1573,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -1675,7 +1706,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -1711,7 +1743,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -1743,13 +1776,38 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
                       "type": "string"
                     },
                     "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "page-content.jumbotron",
+                        "page-content.text-with-image",
+                        "page-content.text",
+                        "page-content.teaser",
+                        "debates.debate-list",
+                        "profile.detail"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
                       "type": "string"
                     }
                   },

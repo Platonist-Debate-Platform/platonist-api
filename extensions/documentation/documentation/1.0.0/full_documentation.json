@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "12/23/2020 10:20:38 AM"
+    "x-generation-date": "12/25/2020 2:57:06 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -6366,6 +6366,77 @@
           }
         ]
       }
+    },
+    "/auth/local/logout": {
+      "post": {
+        "deprecated": false,
+        "description": "Login a user using the identifiers email and password",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "UsersPermissions - User"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -9210,7 +9281,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -9400,7 +9472,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -9532,7 +9605,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -9568,7 +9642,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -9600,13 +9675,38 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
                       "type": "string"
                     },
                     "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "page-content.jumbotron",
+                        "page-content.text-with-image",
+                        "page-content.text",
+                        "page-content.teaser",
+                        "debates.debate-list",
+                        "profile.detail"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
                       "type": "string"
                     }
                   },
@@ -9789,7 +9889,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -9979,7 +10080,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -10111,7 +10213,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -10147,7 +10250,8 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
@@ -10179,13 +10283,38 @@
                         "page-content.text-with-image",
                         "page-content.text",
                         "page-content.teaser",
-                        "debates.debate-list"
+                        "debates.debate-list",
+                        "profile.detail"
                       ]
                     },
                     "id": {
                       "type": "string"
                     },
                     "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "page-content.jumbotron",
+                        "page-content.text-with-image",
+                        "page-content.text",
+                        "page-content.teaser",
+                        "debates.debate-list",
+                        "profile.detail"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
                       "type": "string"
                     }
                   },

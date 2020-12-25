@@ -55,7 +55,8 @@
         "page-content.text-with-image",
         "page-content.text",
         "page-content.teaser",
-        "debates.debate-list"
+        "debates.debate-list",
+        "profile.detail"
       ],
       "required": false
     },
