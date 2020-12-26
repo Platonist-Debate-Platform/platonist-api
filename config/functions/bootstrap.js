@@ -12,10 +12,13 @@ const socket = require('socket.io');
  * See more details here: https://strapi.io/documentation/v3.x/concepts/configurations.html#bootstrap
  */
 
+const isStaging = process.env.NODE_ENV === 'staging' ? true : false;
+const isProduction = process.env.NODE_ENV === 'production' ? true : false;
+
 module.exports = () => {
   var io = socket(strapi.server, {
     cors: {
-      origin: 'http://localhost:3000'
+      origin: (isProduction && 'https://platonist.de') || (isStaging && 'https://staging.platonist.de') || 'http://localhost:3000',
     }
   });
   const clients = [];
