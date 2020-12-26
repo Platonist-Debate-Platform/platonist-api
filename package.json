@@ -9,7 +9,7 @@
     "build": "NODE_ENV=production ./node_modules/.bin/strapi build",
     "build:staging": "NODE_ENV=staging ./node_modules/.bin/strapi build",
     "serve": "NODE_ENV=production ./node_modules/.bin/pm2 start ./server.js --name strapi-prod",
-    "serve:staging": "NODE_ENV=staging ./node_modules/.bin/pm2 start ./server.js --name strapi-dev",
+    "serve:staging": "NODE_ENV=staging ./node_modules/.bin/pm2 restart ./server.js --name strapi-dev",
     "stop": "./node_modules/.bin/pm2 stop strapi-prod",
     "stop:staging": "./node_modules/.bin/pm2 stop strapi-dev",
     "strapi": "strapi"
