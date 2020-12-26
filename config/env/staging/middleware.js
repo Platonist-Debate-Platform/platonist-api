@@ -3,7 +3,7 @@ module.exports = () => ({
     cors: {
       enabled: true,
       credentials: true,
-      origin: ['https://staging.platonist.de', 'http://staging-api.platonist.de'],
+      origin: ['https://staging.platonist.de', 'https://staging-api.platonist.de'],
       headers: [
         "Content-Type",
         "Authorization",
