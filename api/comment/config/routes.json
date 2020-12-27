@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/comments/by-user/:userId",
+      "handler": "comment.findByUser",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

@@ -5,6 +5,7 @@
  * to customize this model
  */
 
+
 module.exports = {
   lifecycles: {
     afterCreate: async (result, data) => {

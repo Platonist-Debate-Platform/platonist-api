@@ -17,8 +17,7 @@ module.exports = {
     const {
       id
     } = ctx.params;
-    console.dir(Object.keys(ctx))
-    console.dir(ctx.matched)
+    
     const entity = await strapi.services.comment.findOne({
       debate: id
     });
