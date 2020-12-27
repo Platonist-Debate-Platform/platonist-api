@@ -23,6 +23,7 @@ const createAuthorizationCookie = (token, maxAge = 1000 * 60 * 60 * 24 * 14) => 
     secure: process.env.NODE_ENV === 'production' ? true : false,
     expires: new Date(Date.now() + maxAge),
     maxAge,
+    sameSite: 'strict',
     domain: process.env.NODE_ENV === 'development' ? 'localhost' : process.env.PRODUCTION_URL,
   }];
 }
