@@ -400,7 +400,20 @@
       "config": {
         "policies": [],
         "prefix": "",
-        "description": "Login a user using the identifiers email and password",
+        "description": "Logout a user",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User"
+        }
+      }
+    }, {
+      "method": "POST",
+      "path": "/auth/local/change-password",
+      "handler": "Auth.changePassword",
+      "config": {
+        "policies": [],
+        "prefix": "",
+        "description": "Change password of authenticated user",
         "tag": {
           "plugin": "users-permissions",
           "name": "User"

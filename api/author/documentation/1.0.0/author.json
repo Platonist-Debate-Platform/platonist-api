@@ -731,6 +731,9 @@
               "lastName": {
                 "type": "string"
               },
+              "avatarOriginal": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

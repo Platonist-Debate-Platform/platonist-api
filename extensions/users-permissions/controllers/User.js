@@ -14,11 +14,10 @@ module.exports = {
   update: async (ctx) => {
     const model = strapi.query('user', 'users-permissions').model;
     const service = strapi.plugins['users-permissions'].services.user;
-    console.log(service);
+    
     const { id } = ctx.params;
 
     let canUpdate = false;
-
     switch (ctx.state.user.role.type) {
       case 'admin':
       case 'moderator':
@@ -40,7 +39,7 @@ module.exports = {
     } else {
       entity = await service.edit({ id }, ctx.request.body);
     }
-
+    
     return sanitizeEntity(entity, { model });
   }
 };

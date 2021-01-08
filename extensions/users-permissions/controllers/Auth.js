@@ -633,4 +633,61 @@ module.exports = {
       user: null,
     });
   },
+
+  async changePassword (ctx) {
+
+    if (!ctx.state.user) {
+      ctx.unauthorized(`You have to login in order to change your password.`);
+    }
+
+    const body = ctx.request.body;
+
+    if (!body || (body && !body.password) || (body && !body.oldPassword)) {
+      ctx.badRequest(
+        null,
+        'Password or old password should be set.'
+      );
+    }
+
+    const model = strapi.query('user', 'users-permissions').model;
+    const service = strapi.plugins['users-permissions'].services.user;
+
+    const id = ctx.state.user.id;
+    
+    let user;
+    try {
+      user = await service.fetchAuthenticatedUser(id);
+    } catch (error) {
+      ctx.badRequest(null, error); 
+    }
+
+    const test1 = await service.hashPassword({
+      ...user,
+      password: body.password,
+    });
+
+    const passwordIsValid = await service.validatePassword(body.oldPassword, user.password);
+
+    if (!passwordIsValid) {
+      ctx.badRequest(null, 'Old password doesn\'t match.'); 
+    }
+
+    const isSamePassword = await service.validatePassword(body.password, user.password);
+
+    if (isSamePassword) {
+      ctx.badRequest(null, 'Please use a different password');
+    }
+
+    delete body.oldPassword;
+    
+    let entity;
+
+    try {
+      entity = await service.edit({ id }, body);
+    } catch (error) {
+      ctx.badRequest(null, error); 
+    }
+
+    return sanitizeEntity(entity, { model });
+  }
 };
