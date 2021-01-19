@@ -419,6 +419,19 @@
           "name": "User"
         }
       }
+    }, {
+      "method": "POST",
+      "path": "/auth/local/change-email",
+      "handler": "Auth.changeEmail",
+      "config": {
+        "policies": [],
+        "prefix": "",
+        "description": "Change Email of authenticated user",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User"
+        }
+      }
     }
   ]
 }

@@ -26,7 +26,7 @@ const createAuthorizationCookie = (token, maxAge = 1000 * 60 * 60 * 24 * 14) => 
     sameSite: 'strict',
     domain: process.env.NODE_ENV === 'development' ? 'localhost' : process.env.PRODUCTION_URL,
   }];
-}
+};
 
 module.exports = {
   async callback(ctx) {
@@ -536,12 +536,13 @@ module.exports = {
         }),
       });
     } catch (err) {
-      const adminError = _.includes(err.message, 'username')
-        ? {
-            id: 'Auth.form.error.username.taken',
-            message: 'Username already taken',
-          }
-        : { id: 'Auth.form.error.email.taken', message: 'Email already taken' };
+      const adminError = _.includes(err.message, 'username') ? {
+        id: 'Auth.form.error.username.taken',
+        message: 'Username already taken',
+      } : { 
+        id: 'Auth.form.error.email.taken', 
+        message: 'Email already taken'
+      };
 
       ctx.badRequest(null, formatError(adminError));
     }
@@ -624,12 +625,12 @@ module.exports = {
   },
 
   async logout(ctx) {
-    ctx.cookies.set("Authorization", null);
-    ctx.cookies.set("Authorization.sig", null);
+    ctx.cookies.set('Authorization', null);
+    ctx.cookies.set('Authorization.sig', null);
     ctx.send({
       status: 'Unauthorized',
       authorized: true,
-      message: "Successfully destroyed session",
+      message: 'Successfully destroyed session',
       user: null,
     });
   },
@@ -637,7 +638,7 @@ module.exports = {
   async changePassword (ctx) {
 
     if (!ctx.state.user) {
-      ctx.unauthorized(`You have to login in order to change your password.`);
+      ctx.unauthorized('You have to login in order to change your password.');
     }
 
     const body = ctx.request.body;
@@ -660,11 +661,6 @@ module.exports = {
     } catch (error) {
       ctx.badRequest(null, error); 
     }
-
-    const test1 = await service.hashPassword({
-      ...user,
-      password: body.password,
-    });
 
     const passwordIsValid = await service.validatePassword(body.oldPassword, user.password);
 
@@ -689,5 +685,121 @@ module.exports = {
     }
 
     return sanitizeEntity(entity, { model });
+  },
+  async changeEmail (ctx) {
+    if (!ctx.state.user) {
+      ctx.unauthorized('You have to login in order to change your password.');
+    }
+
+    const body = ctx.request.body;
+
+    if (!body || (body && !body.email)) {
+      ctx.badRequest(
+        null,
+        'Email should be set.'
+      );
+    }
+
+    const isEmail = emailRegExp.test(body.email);
+
+    if (!isEmail) {
+      ctx.badRequest('Please use a valid Email');
+    }
+
+    const email = body.email.toLowerCase();
+
+    const model = strapi.query('user', 'users-permissions').model;
+    const service = strapi.plugins['users-permissions'].services.user;
+
+    const id = ctx.state.user.id;
+    
+    let user;
+    try {
+      user = await service.fetchAuthenticatedUser(id);
+    } catch (error) {
+      ctx.badRequest(null, error); 
+    }
+
+    let canUpdate = false;
+    switch (ctx.state.user.role.type) {
+      case 'admin':
+      case 'moderator':
+        canUpdate = true;
+        break;
+      default:
+        break;
+    }
+
+    if (!user || !canUpdate || user.email !== ctx.state.user.email) {
+      return ctx.unauthorized('You can\'t edit this entry');
+    }
+
+    if (user.email === email) {
+      return ctx.badRequest(
+        null, 
+        formatError({
+          id: 'Auth.form.error.email.useDifferent',
+          message: 'Email is the same.',
+        })
+      ); 
+    }
+
+    const pluginStore = await strapi.store({
+      environment: '',
+      type: 'plugin',
+      name: 'users-permissions',
+    });
+
+    const settings = await pluginStore.get({
+      key: 'advanced',
+    });
+    
+    if (settings.unique_email) {
+      let count;
+      try {
+        count = service.count({email});
+      } catch (error) {
+        ctx.badRequest(null, error);
+      }
+      if (count && count > 1) {
+        return ctx.badRequest(
+          null,
+          formatError({
+            id: 'Auth.form.error.email.taken',
+            message: 'Email is already taken.',
+          })
+        );
+      }
+    }
+
+    user = {
+      ...user,
+      email,
+      confirmationToken: null,
+    };
+
+    let entity;
+
+    try {
+      if (!settings.email_confirmation) {
+        user.confirmed = true;
+      }
+      entity = await service.edit({ id }, user);
+    } catch (error) {
+      ctx.badRequest(null, error); 
+    }
+
+    const sanitizedUser = sanitizeEntity(entity, {
+      model,
+    });
+
+    if (settings.email_confirmation) {
+      try {
+        await service.sendConfirmationEmail(entity);
+      } catch (err) {
+        return ctx.badRequest(null, err);
+      }
+    }
+    return sanitizedUser;
   }
 };

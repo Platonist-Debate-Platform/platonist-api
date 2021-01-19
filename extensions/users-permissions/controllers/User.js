@@ -3,7 +3,7 @@
 const { 
   parseMultipartData,
   sanitizeEntity,
-} = require('strapi-utils')
+} = require('strapi-utils');
 
 module.exports = {
   // delete: async (ctx) => {
@@ -22,12 +22,13 @@ module.exports = {
       case 'admin':
       case 'moderator':
         canUpdate = true;
+        break;
       default:
         break;
     }
 
     if (id !== ctx.state.user.id.toString() || !canUpdate) {
-      return ctx.unauthorized(`You can't edit this entry`);
+      return ctx.unauthorized('You can\'t edit this entry');
     }
 
     let entity;
