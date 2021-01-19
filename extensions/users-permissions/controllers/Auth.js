@@ -133,10 +133,10 @@ module.exports = {
         ctx.cookies.set(type, value, cookieSetting);
         
         ctx.send({
-          status: 'Authenticated',
-          user: sanitizeEntity(user.toJSON ? user.toJSON() : user, {
+          ...sanitizeEntity(user.toJSON ? user.toJSON() : user, {
             model: strapi.query('user', 'users-permissions').model,
           }),
+          status: 'Authenticated',
         });
       }
     } else {
@@ -173,10 +173,10 @@ module.exports = {
       ctx.cookies.set(type, value, cookieSetting);
       
       ctx.send({
-        status: 'Authenticated',
-        user: sanitizeEntity(user.toJSON ? user.toJSON() : user, {
+        ...sanitizeEntity(user.toJSON ? user.toJSON() : user, {
           model: strapi.query('user', 'users-permissions').model,
         }),
+        status: 'Authenticated',
       });
     }
   },
@@ -517,10 +517,10 @@ module.exports = {
       ctx.cookies.set(type, value, cookieSetting);
 
       return ctx.send({
-        status: 'Authenticated',
-        user: sanitizeEntity(user.toJSON ? user.toJSON() : user, {
+        ...sanitizeEntity(user.toJSON ? user.toJSON() : user, {
           model: strapi.query('user', 'users-permissions').model,
         }),
+        status: 'Authenticated',
       });
     } catch (err) {
       const adminError = _.includes(err.message, 'username') ? {
@@ -623,7 +623,7 @@ module.exports = {
     ctx.cookies.set('Authorization.sig', null);
     ctx.send({
       status: 'Unauthorized',
-      authorized: true,
+      authorized: false,
       message: 'Successfully destroyed session',
       user: null,
     });
