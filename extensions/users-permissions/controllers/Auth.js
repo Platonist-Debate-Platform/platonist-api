@@ -91,19 +91,6 @@ module.exports = {
         );
       }
 
-      if (
-        _.get(await store.get({ key: 'advanced' }), 'email_confirmation') &&
-        user.confirmed !== true
-      ) {
-        return ctx.badRequest(
-          null,
-          formatError({
-            id: 'Auth.form.error.confirmed',
-            message: 'Your account email is not confirmed',
-          })
-        );
-      }
-
       if (user.blocked === true) {
         return ctx.badRequest(
           null,
@@ -548,7 +535,7 @@ module.exports = {
     }
   },
 
-  async emailConfirmation(ctx, next, returnUser) {
+  async emailConfirmation(ctx, next, returnUser = true) {
     const { confirmation: confirmationToken } = ctx.query;
 
     const { user: userService, jwt: jwtService } = strapi.plugins['users-permissions'].services;
@@ -562,16 +549,23 @@ module.exports = {
     if (!user) {
       return ctx.badRequest('token.invalid');
     }
+    const changes = {confirmed: true, confirmationToken: null};
 
-    await userService.edit({ id: user.id }, { confirmed: true, confirmationToken: null });
+    await userService.edit({ id: user.id }, changes);
 
     if (returnUser) {
-      ctx.send({
-        jwt: jwtService.issue({ id: user.id }),
-        user: sanitizeEntity(user, {
+      const token = jwtService.issue(_.pick(user, ['id']));
+
+      const [type, value, cookieSetting] = createAuthorizationCookie(token);
+      ctx.cookies.set(type, value, cookieSetting);
+
+      return ctx.send(
+        sanitizeEntity({
+          ...user,
+          ...changes,
+        }, {
           model: strapi.query('user', 'users-permissions').model,
-        }),
-      });
+        }));
     } else {
       const settings = await strapi
         .store({
@@ -684,6 +678,42 @@ module.exports = {
       ctx.badRequest(null, error); 
     }
 
+    
+    try {
+      const pluginStore = await strapi.store({
+        environment: '',
+        type: 'plugin',
+        name: 'users-permissions',
+      });
+  
+      const settings = await pluginStore
+        .get({ key: 'email' })
+        .then(storeEmail => storeEmail['email_confirmation'].options);
+
+      const message = `
+        <p>Hallo ${entity.firstName || ''}</p>
+        <p>We just want you to inform that you successfully changed your password.</p>
+        <p>Regards<br/>Your platonist Team</p>
+      `;
+
+      await strapi.plugins['email'].services.email.send({
+        to: entity.email,
+        from:
+          settings.from.email && settings.from.name
+            ? `${settings.from.name} <${settings.from.email}>`
+            : undefined,
+        replyTo: settings.response_email,
+        subject: 'Password change',
+        text: message,
+        html: message,
+      });
+    } catch (error) {
+      ctx.badRequest(
+        null,
+        'Failed sending E-mail.'
+      );
+    }
+
     return sanitizeEntity(entity, { model });
   },
   async changeEmail (ctx) {
@@ -757,7 +787,7 @@ module.exports = {
     if (settings.unique_email) {
       let count;
       try {
-        count = service.count({email});
+        count = await service.count({email});
       } catch (error) {
         ctx.badRequest(null, error);
       }
@@ -776,30 +806,33 @@ module.exports = {
       ...user,
       email,
       confirmationToken: null,
+      confirmed: !settings.email_confirmation,
     };
+
+    if (settings.email_confirmation) {
+      try {
+        
+        await service.sendConfirmationEmail(user);
+      } catch (error) {
+        return ctx.badRequest(null, error);
+      }
+    }
 
     let entity;
 
     try {
-      if (!settings.email_confirmation) {
-        user.confirmed = true;
-      }
-      entity = await service.edit({ id }, user);
+      entity = await service.fetch({id: user.id});
+      entity = await strapi.query('user', 'users-permissions').update({id: user.id}, {
+        ...entity,
+        email,
+        confirmed: !settings.email_confirmation,
+      });
     } catch (error) {
-      ctx.badRequest(null, error); 
+      return ctx.badRequest(null, error);
     }
-
-    const sanitizedUser = sanitizeEntity(entity, {
+    
+    return sanitizeEntity(entity, {
       model,
     });
-
-    if (settings.email_confirmation) {
-      try {
-        await service.sendConfirmationEmail(entity);
-      } catch (err) {
-        return ctx.badRequest(null, err);
-      }
-    }
-    return sanitizedUser;
   }
 };
