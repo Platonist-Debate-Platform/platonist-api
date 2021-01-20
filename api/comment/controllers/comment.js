@@ -136,7 +136,7 @@ module.exports = {
     const query = {
       ...ctx.query,
       user: userId,
-    }
+    };
 
     let entities;
 
