@@ -11,7 +11,7 @@ const {
 
 const {
   update
-}  = require('strapi-plugin-users-permissions/controllers/User/admin');
+}  = require('strapi-plugin-users-permissions/controllers/user/admin');
 
 const validateUploadBody = require('strapi-plugin-upload/controllers/validation/upload');
 
