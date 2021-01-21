@@ -6,6 +6,7 @@
   "scripts": {
     "develop": "./node_modules/.bin/strapi develop",
     "start": "./node_modules/.bin/strapi start",
+    "start:staging": "NODE_ENV=staging ./node_modules/.bin/pm2 start ./server.js --name strapi-dev",
     "build": "NODE_ENV=production ./node_modules/.bin/strapi build",
     "build:staging": "NODE_ENV=staging ./node_modules/.bin/strapi build",
     "serve": "NODE_ENV=production ./node_modules/.bin/pm2 start ./server.js --name strapi-prod",
