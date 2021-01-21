@@ -3,7 +3,7 @@
 const { 
   parseMultipartData,
   sanitizeEntity,
-} = require('strapi-utils')
+} = require('strapi-utils');
 
 const {
   getModel,
