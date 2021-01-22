@@ -751,7 +751,7 @@ module.exports = {
     }
 
     let canUpdate = false;
-    switch (ctx.state.user.role.type) {
+    switch (ctx.state.user.role.type.toLowerCase()) {
       case 'admin':
       case 'moderator':
         canUpdate = true;
@@ -760,8 +760,11 @@ module.exports = {
         break;
     }
 
-    if (!user || !canUpdate || user.email !== ctx.state.user.email) {
-      return ctx.unauthorized('You can\'t edit this entry');
+    const isUser = user.email === ctx.state.user.email;
+    canUpdate = canUpdate === false && isUser ? true : false;
+    
+    if (!user || !canUpdate) {
+      return ctx.unauthorized(`You can\'t edit this entry, email: ${user.email}`);
     }
 
     if (user.email === email) {
@@ -802,7 +805,7 @@ module.exports = {
       }
     }
 
-    user = {
+    const newUser = {
       ...user,
       email,
       confirmationToken: null,
@@ -812,7 +815,7 @@ module.exports = {
     if (settings.email_confirmation) {
       try {
         
-        await service.sendConfirmationEmail(user);
+        await service.sendConfirmationEmail(newUser);
       } catch (error) {
         return ctx.badRequest(null, error);
       }
@@ -821,8 +824,8 @@ module.exports = {
     let entity;
 
     try {
-      entity = await service.fetch({id: user.id});
-      entity = await strapi.query('user', 'users-permissions').update({id: user.id}, {
+      entity = await service.fetch({id: newUser.id});
+      entity = await strapi.query('user', 'users-permissions').update({id: newUser.id}, {
         ...entity,
         email,
         confirmed: !settings.email_confirmation,
