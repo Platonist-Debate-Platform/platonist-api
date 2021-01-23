@@ -13,6 +13,7 @@ module.exports = {
     const entity = await strapi.services.debate.findOne({ title });
     return sanitizeEntity(entity, { model: strapi.models.debate });
   },
+
   async findComments (ctx) {
     const {
       id
@@ -23,5 +24,5 @@ module.exports = {
     });
 
     return sanitizeEntity(entity, { model: strapi.models.comment });
-  }
+  },
 };

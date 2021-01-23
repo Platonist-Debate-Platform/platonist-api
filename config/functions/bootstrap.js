@@ -57,6 +57,6 @@ module.exports = () => {
         delete: data => io.emit(`${model}.delete`, data),
         update: data => io.emit(`${model}.update`, data),
       }, 
-    })
+    });
   });
 };
