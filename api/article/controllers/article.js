@@ -12,6 +12,10 @@ const {
   getService,
 } = require('../../../lib/utils');
 
+const formatError = error => [
+  { messages: [{ id: error.id, message: error.message, field: error.field }] },
+];
+
 const settings = require('../models/article.settings.json');
 
 const modelName = settings.info.name;
@@ -21,11 +25,29 @@ module.exports = {
     const service = getService(strapi, modelName.toLowerCase());
     const model = getModel(strapi, modelName.toLowerCase());
     const { 
-      url 
+      key, 
+      url,
     } = ctx.request.body;
 
     if (!url) {
-      return ctx.badRequest(null, 'Url is missing');
+      return ctx.badRequest(
+        null, 
+        formatError({
+          id: 'Article.form.error.url.missing',
+          message: 'The "URL" entity is required',
+        })
+      ); 
+    }
+
+    if (!key) {
+      return ctx.badRequest(
+        null, 
+        formatError({
+          id: 'Article.form.error.key.missing',
+          message: 'The "key" entity is required',
+        })
+      ); 
+
     }
     
     let entity;
@@ -35,6 +57,11 @@ module.exports = {
       return ctx.badRequest(null, error);
     }
 
-    return sanitizeEntity(entity, { model });
+    const sanitizedEntity = sanitizeEntity(entity, { model });
+
+    return {
+      ...sanitizedEntity,
+      key,
+    };
   },
 };
