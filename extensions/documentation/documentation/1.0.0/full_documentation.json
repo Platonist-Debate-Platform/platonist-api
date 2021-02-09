@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "01/23/2021 3:21:23 PM"
+    "x-generation-date": "02/09/2021 5:00:18 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -7157,41 +7157,6 @@
             "maxLength": 1000,
             "minLength": 3
           },
-          "replies": {
-            "required": [
-              "id",
-              "comment"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "comment": {
-                "type": "string"
-              },
-              "replies": {
-                "type": "string"
-              },
-              "debate": {
-                "type": "string"
-              },
-              "moderator": {
-                "type": "string"
-              },
-              "user": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "debate": {
             "required": [
               "id",
@@ -7338,6 +7303,91 @@
               }
             }
           },
+          "parent": {
+            "required": [
+              "id",
+              "comment"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "comment": {
+                "type": "string"
+              },
+              "debate": {
+                "type": "string"
+              },
+              "moderator": {
+                "type": "string"
+              },
+              "user": {
+                "type": "string"
+              },
+              "parent": {
+                "type": "string"
+              },
+              "replies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "replies": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "comment"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "debate": {
+                  "type": "string"
+                },
+                "moderator": {
+                  "type": "string"
+                },
+                "user": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "replies": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -7354,9 +7404,6 @@
             "maxLength": 1000,
             "minLength": 3
           },
-          "replies": {
-            "type": "string"
-          },
           "debate": {
             "type": "string"
           },
@@ -7365,6 +7412,15 @@
           },
           "user": {
             "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          },
+          "replies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "published_at": {
             "type": "string",
@@ -7588,9 +7644,6 @@
                 "comment": {
                   "type": "string"
                 },
-                "replies": {
-                  "type": "string"
-                },
                 "debate": {
                   "type": "string"
                 },
@@ -7599,6 +7652,15 @@
                 },
                 "user": {
                   "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "replies": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "published_at": {
                   "type": "string"

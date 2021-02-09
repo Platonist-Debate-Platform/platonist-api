@@ -17,9 +17,6 @@
       "minLength": 3,
       "required": true
     },
-    "replies": {
-      "collection": "comment"
-    },
     "debate": {
       "model": "debate",
       "via": "comments"
@@ -31,6 +28,14 @@
     "user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "parent": {
+      "model": "comment",
+      "via": "replies"
+    },
+    "replies": {
+      "collection": "comment",
+      "via": "parent"
     }
   }
 }

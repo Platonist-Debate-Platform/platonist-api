@@ -596,41 +596,6 @@
             "maxLength": 1000,
             "minLength": 3
           },
-          "replies": {
-            "required": [
-              "id",
-              "comment"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "comment": {
-                "type": "string"
-              },
-              "replies": {
-                "type": "string"
-              },
-              "debate": {
-                "type": "string"
-              },
-              "moderator": {
-                "type": "string"
-              },
-              "user": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "debate": {
             "required": [
               "id",
@@ -777,6 +742,91 @@
               }
             }
           },
+          "parent": {
+            "required": [
+              "id",
+              "comment"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "comment": {
+                "type": "string"
+              },
+              "debate": {
+                "type": "string"
+              },
+              "moderator": {
+                "type": "string"
+              },
+              "user": {
+                "type": "string"
+              },
+              "parent": {
+                "type": "string"
+              },
+              "replies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "replies": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "comment"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "debate": {
+                  "type": "string"
+                },
+                "moderator": {
+                  "type": "string"
+                },
+                "user": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "replies": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -793,9 +843,6 @@
             "maxLength": 1000,
             "minLength": 3
           },
-          "replies": {
-            "type": "string"
-          },
           "debate": {
             "type": "string"
           },
@@ -804,6 +851,15 @@
           },
           "user": {
             "type": "string"
+          },
+          "parent": {
+            "type": "string"
+          },
+          "replies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "published_at": {
             "type": "string",

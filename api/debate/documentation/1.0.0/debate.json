@@ -860,9 +860,6 @@
                 "comment": {
                   "type": "string"
                 },
-                "replies": {
-                  "type": "string"
-                },
                 "debate": {
                   "type": "string"
                 },
@@ -871,6 +868,15 @@
                 },
                 "user": {
                   "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "replies": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "published_at": {
                   "type": "string"

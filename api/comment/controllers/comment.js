@@ -33,6 +33,7 @@ const cleanEntity = entity => {
 
   delete entity.debate;
   delete entity.moderator;
+  delete entity.replies;
   
   return entity;
 };
@@ -56,11 +57,15 @@ module.exports = {
     const model = getModel(strapi, modelName);
 
     let entity;
-    if (ctx.is('multipart')) {
-      const { data, files } = parseMultipartData(ctx);
-      entity = await service.create(data, { files });
-    } else {
-      entity = await service.create(ctx.request.body);
+    try { 
+      if (ctx.is('multipart')) {
+        const { data, files } = parseMultipartData(ctx);
+        entity = await service.create(data, { files });
+      } else {
+        entity = await service.create(ctx.request.body);
+      }
+    } catch (error) {
+      return ctx.badRequest(error);
     }
 
     return cleanAndSanitizeEntity(entity, model);
@@ -86,12 +91,13 @@ module.exports = {
       case 'admin':
       case 'moderator':
         canDelete = true;
+        break;
       default:
         break;
     }
 
     if (!comment || !canDelete) {
-      return ctx.unauthorized(`You can't delete this entry`);
+      return ctx.unauthorized('You can\'t delete this entry');
     }
 
     const entity = await service.delete({ id });
@@ -180,7 +186,7 @@ module.exports = {
     });
 
     if (!comment) {
-      return ctx.unauthorized(`You can't update this entry`);
+      return ctx.unauthorized('You can\'t update this entry');
     }
 
     let entity;
