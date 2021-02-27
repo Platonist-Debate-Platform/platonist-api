@@ -654,7 +654,10 @@
         "required": [
           "id",
           "title",
-          "shortDescription"
+          "shortDescription",
+          "published",
+          "archiveDate",
+          "archived"
         ],
         "properties": {
           "id": {
@@ -890,6 +893,18 @@
               }
             }
           },
+          "published": {
+            "type": "boolean",
+            "default": false
+          },
+          "archiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "archived": {
+            "type": "boolean",
+            "default": false
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -899,7 +914,10 @@
       "NewDebate": {
         "required": [
           "title",
-          "shortDescription"
+          "shortDescription",
+          "published",
+          "archiveDate",
+          "archived"
         ],
         "properties": {
           "title": {
@@ -928,6 +946,18 @@
             "items": {
               "type": "string"
             }
+          },
+          "published": {
+            "type": "boolean",
+            "default": false
+          },
+          "archiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "archived": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",

@@ -168,4 +168,149 @@ module.exports = {
       model
     });
   },
+
+  /**
+   * 
+   * @param {*} ctx 
+   */
+  find: async (ctx) => {
+    const service = getService(strapi, modelName);
+    const model = getModel(strapi, modelName);
+   
+    const user = ctx.state && ctx.state.user;
+
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          Object.assign(ctx.query, {
+            published: true
+          });
+          break;
+      }
+    } else {
+      Object.assign(ctx.query, {
+        published: true
+      });
+    }
+
+    const { _start, _limit, ...query } = ctx.query;
+    const start = Number(_start);
+    const limit = Number(_limit);
+
+    let entities;
+    if (ctx.query._q) {
+      entities = await service.search(ctx.query);
+    } else {
+      entities = await service.find(ctx.query);
+    }
+    
+    const result =  entities.map(entity => sanitizeEntity(entity, {model}));
+    const isPager = _start && _limit ? true : false;
+
+    if (!isPager) {
+      return result;
+    }
+
+    let count;
+
+    if (isPager) {
+      try {
+        if (ctx.query._q) {
+          count = await service.countSearch(query);
+        }
+        
+        count = await service.count(query);
+      } catch (error) {
+        return ctx.badRequest(error);
+      }
+    }
+
+    return {
+      count,
+      countValue: result.length,
+      current: {
+        limit,
+        start,
+      },
+      next: start + limit <= count - 1 ? {
+        limit, 
+        start: start + limit,
+      } : null,
+      prev: start + limit >= count - 1 ? {
+        limit,
+        start: start - limit < 0 ? 0 : start - limit,
+      } : null,
+      value: result,
+    };
+  },
+
+  /**
+   * 
+   * @param {*} ctx 
+   */
+  findOne: async (ctx) => {
+    const service = getService(strapi, modelName);
+    const model = getModel(strapi, modelName);
+
+    const { id } = ctx.params;
+
+    const params = {
+      id,
+    };
+
+    const user = ctx.state && ctx.state.user;
+
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          Object.assign(params, {
+            published: true
+          });
+          break;
+      }
+    } else {
+      Object.assign(params, {
+        published: true
+      });
+    }
+
+    const entity = await service.findOne(params);
+
+    return sanitizeEntity(entity, {model});
+  },
+  
+  count: async (ctx) => {
+    const service = getService(strapi, modelName);
+    
+    const user = ctx.state && ctx.state.user;
+
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          Object.assign(ctx.query, {
+            published: true
+          });
+          break;
+      }
+    } else {
+      Object.assign(ctx.query, {
+        published: true
+      });
+    }
+
+    if (ctx.query._q) {
+      return service.countSearch(ctx.query);
+    }
+    
+    return service.count(ctx.query);
+  }
 };

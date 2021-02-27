@@ -600,7 +600,10 @@
             "required": [
               "id",
               "title",
-              "shortDescription"
+              "shortDescription",
+              "published",
+              "archiveDate",
+              "archived"
             ],
             "properties": {
               "id": {
@@ -629,6 +632,15 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "published": {
+                "type": "boolean"
+              },
+              "archiveDate": {
+                "type": "string"
+              },
+              "archived": {
+                "type": "boolean"
               },
               "published_at": {
                 "type": "string"

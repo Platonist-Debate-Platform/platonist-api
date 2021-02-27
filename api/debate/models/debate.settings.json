@@ -36,8 +36,22 @@
       "model": "page"
     },
     "comments": {
-      "via": "debate",
-      "collection": "comment"
+      "collection": "comment",
+      "via": "debate"
+    },
+    "published": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "archiveDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

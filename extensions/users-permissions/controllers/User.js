@@ -33,6 +33,7 @@ module.exports = {
     if (isAuthenticatedAdmin) {
       return update(ctx);
     }
+    
     let body = ctx.request.body;
     let files;
     if (ctx.is('multipart')) {

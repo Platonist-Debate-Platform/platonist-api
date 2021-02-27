@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "02/09/2021 5:00:18 PM"
+    "x-generation-date": "02/23/2021 8:27:14 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -7161,7 +7161,10 @@
             "required": [
               "id",
               "title",
-              "shortDescription"
+              "shortDescription",
+              "published",
+              "archiveDate",
+              "archived"
             ],
             "properties": {
               "id": {
@@ -7190,6 +7193,15 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "published": {
+                "type": "boolean"
+              },
+              "archiveDate": {
+                "type": "string"
+              },
+              "archived": {
+                "type": "boolean"
               },
               "published_at": {
                 "type": "string"
@@ -7438,7 +7450,10 @@
         "required": [
           "id",
           "title",
-          "shortDescription"
+          "shortDescription",
+          "published",
+          "archiveDate",
+          "archived"
         ],
         "properties": {
           "id": {
@@ -7674,6 +7689,18 @@
               }
             }
           },
+          "published": {
+            "type": "boolean",
+            "default": false
+          },
+          "archiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "archived": {
+            "type": "boolean",
+            "default": false
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -7683,7 +7710,10 @@
       "NewDebate": {
         "required": [
           "title",
-          "shortDescription"
+          "shortDescription",
+          "published",
+          "archiveDate",
+          "archived"
         ],
         "properties": {
           "title": {
@@ -7712,6 +7742,18 @@
             "items": {
               "type": "string"
             }
+          },
+          "published": {
+            "type": "boolean",
+            "default": false
+          },
+          "archiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "archived": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",

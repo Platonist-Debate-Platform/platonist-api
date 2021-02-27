@@ -18,8 +18,8 @@
       "required": true
     },
     "debate": {
-      "model": "debate",
-      "via": "comments"
+      "via": "comments",
+      "model": "debate"
     },
     "moderator": {
       "plugin": "admin",
