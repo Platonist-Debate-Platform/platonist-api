@@ -1311,29 +1311,37 @@
                 "type": "string"
               },
               "socials": {
-                "required": [
-                  "id",
-                  "title",
-                  "link"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "link": {
-                    "type": "string"
-                  },
-                  "icon": {
-                    "type": "string"
-                  },
-                  "created_by": {
-                    "type": "string"
-                  },
-                  "updated_by": {
-                    "type": "string"
+                "type": "array",
+                "items": {
+                  "required": [
+                    "id",
+                    "title",
+                    "link"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "link": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "enum": [
+                        "facebook",
+                        "linkedin",
+                        "instagram"
+                      ]
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
+                      "type": "string"
+                    }
                   }
                 }
               },
@@ -1356,64 +1364,67 @@
                 "type": "string"
               },
               "pages": {
-                "required": [
-                  "id",
-                  "title",
-                  "active",
-                  "inNavigation",
-                  "inFooter"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "homepage": {
-                    "type": "string"
-                  },
-                  "active": {
-                    "type": "boolean"
-                  },
-                  "inNavigation": {
-                    "type": "boolean"
-                  },
-                  "inFooter": {
-                    "type": "boolean"
-                  },
-                  "page": {
-                    "type": "string"
-                  },
-                  "pages": {
-                    "type": "array",
-                    "items": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "id",
+                    "title",
+                    "active",
+                    "inNavigation",
+                    "inFooter"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "homepage": {
+                      "type": "string"
+                    },
+                    "active": {
+                      "type": "boolean"
+                    },
+                    "inNavigation": {
+                      "type": "boolean"
+                    },
+                    "inFooter": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "string"
+                    },
+                    "pages": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "meta": {
+                      "type": "component"
+                    },
+                    "content": {
+                      "type": "dynamiczone"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "contact": {
+                      "type": "component"
+                    },
+                    "footerNav": {
+                      "type": "dynamiczone"
+                    },
+                    "ordering": {
+                      "type": "integer"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
                       "type": "string"
                     }
-                  },
-                  "meta": {
-                    "type": "component"
-                  },
-                  "content": {
-                    "type": "dynamiczone"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "contact": {
-                    "type": "component"
-                  },
-                  "footerNav": {
-                    "type": "dynamiczone"
-                  },
-                  "ordering": {
-                    "type": "integer"
-                  },
-                  "created_by": {
-                    "type": "string"
-                  },
-                  "updated_by": {
-                    "type": "string"
                   }
                 }
               }
@@ -2040,29 +2051,37 @@
                 "type": "string"
               },
               "socials": {
-                "required": [
-                  "id",
-                  "title",
-                  "link"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "link": {
-                    "type": "string"
-                  },
-                  "icon": {
-                    "type": "string"
-                  },
-                  "created_by": {
-                    "type": "string"
-                  },
-                  "updated_by": {
-                    "type": "string"
+                "type": "array",
+                "items": {
+                  "required": [
+                    "id",
+                    "title",
+                    "link"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "link": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "enum": [
+                        "facebook",
+                        "linkedin",
+                        "instagram"
+                      ]
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
+                      "type": "string"
+                    }
                   }
                 }
               },
@@ -2085,64 +2104,67 @@
                 "type": "string"
               },
               "pages": {
-                "required": [
-                  "id",
-                  "title",
-                  "active",
-                  "inNavigation",
-                  "inFooter"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "homepage": {
-                    "type": "string"
-                  },
-                  "active": {
-                    "type": "boolean"
-                  },
-                  "inNavigation": {
-                    "type": "boolean"
-                  },
-                  "inFooter": {
-                    "type": "boolean"
-                  },
-                  "page": {
-                    "type": "string"
-                  },
-                  "pages": {
-                    "type": "array",
-                    "items": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "id",
+                    "title",
+                    "active",
+                    "inNavigation",
+                    "inFooter"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "homepage": {
+                      "type": "string"
+                    },
+                    "active": {
+                      "type": "boolean"
+                    },
+                    "inNavigation": {
+                      "type": "boolean"
+                    },
+                    "inFooter": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "string"
+                    },
+                    "pages": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "meta": {
+                      "type": "component"
+                    },
+                    "content": {
+                      "type": "dynamiczone"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "contact": {
+                      "type": "component"
+                    },
+                    "footerNav": {
+                      "type": "dynamiczone"
+                    },
+                    "ordering": {
+                      "type": "integer"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
                       "type": "string"
                     }
-                  },
-                  "meta": {
-                    "type": "component"
-                  },
-                  "content": {
-                    "type": "dynamiczone"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "contact": {
-                    "type": "component"
-                  },
-                  "footerNav": {
-                    "type": "dynamiczone"
-                  },
-                  "ordering": {
-                    "type": "integer"
-                  },
-                  "created_by": {
-                    "type": "string"
-                  },
-                  "updated_by": {
-                    "type": "string"
                   }
                 }
               }

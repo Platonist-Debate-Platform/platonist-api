@@ -232,16 +232,16 @@ module.exports = {
       count,
       countValue: result.length,
       current: {
-        limit,
-        start,
+        _limit: limit,
+        _start: start,
       },
       next: start + limit <= count - 1 ? {
-        limit, 
-        start: start + limit,
+        _limit, 
+        _start: start + limit,
       } : null,
       prev: start + limit >= count - 1 ? {
-        limit,
-        start: start - limit < 0 ? 0 : start - limit,
+        _limit,
+        _start: start - limit < 0 ? 0 : start - limit,
       } : null,
       value: result,
     };
