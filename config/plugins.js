@@ -5,8 +5,8 @@ module.exports = ({ env }) => ({
       host: env('SMTP_HOST', 'sslout.df.eu'),
       port: env('SMTP_PORT', 25),
       auth: {
-        user: env('SMTP_USERNAME', 'info@daniel-pfisterer.de'),
-        pass: env('SMTP_PASSWORD', 'Qwer1234'),
+        user: env('SMTP_USERNAME'),
+        pass: env('SMTP_PASSWORD'),
       },
       // ... any custom nodemailer options
     },
