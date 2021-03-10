@@ -11,6 +11,7 @@ const { getModel, getService } = require('../../../lib/utils');
 
 const settings = require('../models/debate.settings.json');
 const articleSetting = require('../../article/models/article.settings.json');
+const pager = require('../../../lib/pager');
 
 const modelName = settings.info.name.toLowerCase();
 const articleModelName = articleSetting.info.name.toLowerCase();
@@ -174,9 +175,6 @@ module.exports = {
    * @param {*} ctx 
    */
   find: async (ctx) => {
-    const service = getService(strapi, modelName);
-    const model = getModel(strapi, modelName);
-   
     const user = ctx.state && ctx.state.user;
 
     if (user && user.role && user.role.type) {
@@ -196,55 +194,7 @@ module.exports = {
       });
     }
 
-    const { _start, _limit, ...query } = ctx.query;
-    const start = Number(_start);
-    const limit = Number(_limit);
-
-    let entities;
-    if (ctx.query._q) {
-      entities = await service.search(ctx.query);
-    } else {
-      entities = await service.find(ctx.query);
-    }
-    
-    const result =  entities.map(entity => sanitizeEntity(entity, {model}));
-    const isPager = _start && _limit ? true : false;
-
-    if (!isPager) {
-      return result;
-    }
-
-    let count;
-
-    if (isPager) {
-      try {
-        if (ctx.query._q) {
-          count = await service.countSearch(query);
-        }
-        
-        count = await service.count(query);
-      } catch (error) {
-        return ctx.badRequest(error);
-      }
-    }
-
-    return {
-      count,
-      countValue: result.length,
-      current: {
-        _limit: limit,
-        _start: start,
-      },
-      next: start + limit <= count - 1 ? {
-        _limit, 
-        _start: start + limit,
-      } : null,
-      prev: start + limit >= count - 1 ? {
-        _limit,
-        _start: start - limit < 0 ? 0 : start - limit,
-      } : null,
-      value: result,
-    };
+    return pager(ctx, strapi, modelName);
   },
 
   /**
@@ -284,7 +234,6 @@ module.exports = {
 
     return sanitizeEntity(entity, {model});
   },
-  
   count: async (ctx) => {
     const service = getService(strapi, modelName);
     

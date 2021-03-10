@@ -4,6 +4,7 @@ const {
   parseMultipartData,
   sanitizeEntity,
 } = require('strapi-utils');
+const pager = require('../../../lib/pager');
 
 const {
   getModel,
@@ -114,17 +115,7 @@ module.exports = {
    * @param {*} ctx 
    */
   find: async (ctx) => {
-    const service = getService(strapi, modelName);
-    const model = getModel(strapi, modelName);
-
-    let entities;
-    if (ctx.query._q) {
-      entities = await service.search(ctx.query);
-    } else {
-      entities = await service.find(ctx.query);
-    }
-
-    return entities.map(entity => cleanAndSanitizeEntity(entity, model));
+    return pager(ctx, strapi, modelName);
   },
 
   /**
