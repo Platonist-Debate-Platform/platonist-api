@@ -184,12 +184,14 @@ module.exports = {
           break;
         default:
           Object.assign(ctx.query, {
+            archiveDate_gte: new Date().getTime(),
             published: true
           });
           break;
       }
     } else {
       Object.assign(ctx.query, {
+        archiveDate_gte: new Date().getTime(),
         published: true
       });
     }
@@ -220,12 +222,14 @@ module.exports = {
           break;
         default:
           Object.assign(params, {
+            archiveDate_gte: new Date().getTime(),
             published: true
           });
           break;
       }
     } else {
       Object.assign(params, {
+        archiveDate_gte: new Date().getTime(),
         published: true
       });
     }
@@ -246,12 +250,14 @@ module.exports = {
           break;
         default:
           Object.assign(ctx.query, {
+            archiveDate_gte: new Date().getTime(),
             published: true
           });
           break;
       }
     } else {
       Object.assign(ctx.query, {
+        archiveDate_gte: new Date().getTime(),
         published: true
       });
     }
