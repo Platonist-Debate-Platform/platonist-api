@@ -117,6 +117,25 @@ module.exports = {
     const service = getService(strapi, modelName);
     const model = getModel(strapi, modelName);
 
+    const user = ctx.state && ctx.state.user;
+
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          Object.assign(ctx.query, {
+            blocked: false
+          });
+          break;
+      }
+    } else {
+      Object.assign(ctx.query, {
+        blocked: false
+      });
+    }
+
     let entities;
     if (ctx.query._q) {
       entities = await service.search(ctx.query);
@@ -141,8 +160,27 @@ module.exports = {
     
     const query = {
       ...ctx.query,
-      user: userId,
+      user: userId
     };
+
+    const user = ctx.state && ctx.state.user;
+
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          Object.assign(query, {
+            blocked: false
+          });
+          break;
+      }
+    } else {
+      Object.assign(query, {
+        blocked: false
+      });
+    }
 
     let entities;
 
@@ -169,7 +207,26 @@ module.exports = {
 
     if (!entity) {
       return null;
-    } 
+    }
+
+    const user = ctx.state && ctx.state.user;
+    let blocked = false;
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          blocked = entity.blocked;
+          break;
+      }
+    } else {
+      blocked = entity.blocked;
+    }
+
+    if (blocked) {
+      throw ctx.notFound();
+    }
 
     return cleanAndSanitizeEntity(entity, model);
   },
@@ -180,10 +237,33 @@ module.exports = {
 
     const { id } = ctx.params;
     
-    const [comment] = await service.find({
+    const findQuery = {
       id,
-      'user.id': ctx.state.user.id,
-    });
+      'user.id': ctx.state.user.id
+    };
+    
+    const user = ctx.state && ctx.state.user;
+
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          Object.assign(findQuery, {
+            blocked: false,
+            disputed: false,
+          });
+          break;
+      }
+    } else {
+      Object.assign(findQuery, {
+        blocked: false,
+        disputed: false,
+      });
+    }
+
+    const [comment] = await service.find(findQuery);
 
     if (!comment) {
       return ctx.unauthorized('You can\'t update this entry');
@@ -200,5 +280,33 @@ module.exports = {
     }
 
     return cleanAndSanitizeEntity(entity, model);
+  },
+
+  count: async (ctx) => {
+    const service = getService(strapi, modelName);
+
+    const user = ctx.state && ctx.state.user;
+
+    if (user && user.role && user.role.type) {
+      switch (user.role.type.toLowerCase()) {
+        case 'admin':
+        case 'moderator':
+          break;
+        default:
+          Object.assign(ctx.query, {
+            blocked: false
+          });
+          break;
+      }
+    } else {
+      Object.assign(ctx.query, {
+        blocked: false
+      });
+    }
+
+    if (ctx.query._q) {
+      return service.countSearch(ctx.query);
+    }
+    return service.count(ctx.query);
   },
 };

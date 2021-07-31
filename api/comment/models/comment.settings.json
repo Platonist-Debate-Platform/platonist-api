@@ -18,8 +18,8 @@
       "required": true
     },
     "debate": {
-      "via": "comments",
-      "model": "debate"
+      "model": "debate",
+      "via": "comments"
     },
     "moderator": {
       "plugin": "admin",
@@ -36,6 +36,27 @@
     "replies": {
       "collection": "comment",
       "via": "parent"
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false
+    },
+    "disputed": {
+      "type": "boolean",
+      "default": false
+    },
+    "moderationComment": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "blocked",
+        "disputed",
+        "active"
+      ],
+      "default": "active",
+      "required": true
     }
   }
 }

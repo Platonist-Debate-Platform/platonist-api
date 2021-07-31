@@ -36,8 +36,8 @@
       "model": "page"
     },
     "comments": {
-      "collection": "comment",
-      "via": "debate"
+      "via": "debate",
+      "collection": "comment"
     },
     "published": {
       "type": "boolean",

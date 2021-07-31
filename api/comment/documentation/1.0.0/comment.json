@@ -585,7 +585,8 @@
       "Comment": {
         "required": [
           "id",
-          "comment"
+          "comment",
+          "status"
         ],
         "properties": {
           "id": {
@@ -694,6 +695,9 @@
               },
               "blocked": {
                 "type": "boolean"
+              },
+              "preferedLanguage": {
+                "type": "string"
               }
             }
           },
@@ -757,7 +761,8 @@
           "parent": {
             "required": [
               "id",
-              "comment"
+              "comment",
+              "status"
             ],
             "properties": {
               "id": {
@@ -784,6 +789,23 @@
                   "type": "string"
                 }
               },
+              "blocked": {
+                "type": "boolean"
+              },
+              "disputed": {
+                "type": "boolean"
+              },
+              "moderationComment": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "blocked",
+                  "disputed",
+                  "active"
+                ]
+              },
               "published_at": {
                 "type": "string"
               },
@@ -800,7 +822,8 @@
             "items": {
               "required": [
                 "id",
-                "comment"
+                "comment",
+                "status"
               ],
               "properties": {
                 "id": {
@@ -827,6 +850,23 @@
                     "type": "string"
                   }
                 },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "disputed": {
+                  "type": "boolean"
+                },
+                "moderationComment": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "blocked",
+                    "disputed",
+                    "active"
+                  ]
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -839,6 +879,26 @@
               }
             }
           },
+          "blocked": {
+            "type": "boolean",
+            "default": false
+          },
+          "disputed": {
+            "type": "boolean",
+            "default": false
+          },
+          "moderationComment": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "default": "active",
+            "enum": [
+              "blocked",
+              "disputed",
+              "active"
+            ]
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -847,7 +907,8 @@
       },
       "NewComment": {
         "required": [
-          "comment"
+          "comment",
+          "status"
         ],
         "properties": {
           "comment": {
@@ -872,6 +933,26 @@
             "items": {
               "type": "string"
             }
+          },
+          "blocked": {
+            "type": "boolean",
+            "default": false
+          },
+          "disputed": {
+            "type": "boolean",
+            "default": false
+          },
+          "moderationComment": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "default": "active",
+            "enum": [
+              "blocked",
+              "disputed",
+              "active"
+            ]
           },
           "published_at": {
             "type": "string",

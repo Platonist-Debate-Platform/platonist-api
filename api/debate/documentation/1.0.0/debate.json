@@ -854,7 +854,8 @@
             "items": {
               "required": [
                 "id",
-                "comment"
+                "comment",
+                "status"
               ],
               "properties": {
                 "id": {
@@ -880,6 +881,23 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "blocked": {
+                  "type": "boolean"
+                },
+                "disputed": {
+                  "type": "boolean"
+                },
+                "moderationComment": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "blocked",
+                    "disputed",
+                    "active"
+                  ]
                 },
                 "published_at": {
                   "type": "string"

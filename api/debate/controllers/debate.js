@@ -207,7 +207,14 @@ module.exports = {
       entities = await service.find(ctx.query);
     }
     
-    const result =  entities.map(entity => sanitizeEntity(entity, {model}));
+    const result = entities.map(entity => {
+      if (entity.comments && entity.comments.length) {
+        const comments = entity.comments;
+        delete entity.comments;
+        entity.comments = comments.filter(comment => comment.blocked === false);
+      }
+      return sanitizeEntity(entity, { model });
+    });
     const isPager = _start && _limit ? true : false;
 
     if (!isPager) {
@@ -281,7 +288,11 @@ module.exports = {
     }
 
     const entity = await service.findOne(params);
-
+    if (entity.comments && entity.comments.length) {
+      const comments = entity.comments;
+      delete entity.comments;
+      entity.comments = comments.filter(comment => comment.blocked === false);
+    }
     return sanitizeEntity(entity, {model});
   },
   
