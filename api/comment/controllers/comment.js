@@ -126,13 +126,13 @@ module.exports = {
           break;
         default:
           Object.assign(ctx.query, {
-            blocked: false
+            // blocked: false
           });
           break;
       }
     } else {
       Object.assign(ctx.query, {
-        blocked: false
+        // blocked: false
       });
     }
 
@@ -172,13 +172,13 @@ module.exports = {
           break;
         default:
           Object.assign(query, {
-            blocked: false
+            // blocked: false
           });
           break;
       }
     } else {
       Object.assign(query, {
-        blocked: false
+        // blocked: false
       });
     }
 
@@ -251,14 +251,14 @@ module.exports = {
           break;
         default:
           Object.assign(findQuery, {
-            blocked: false,
+            // blocked: false,
             disputed: false,
           });
           break;
       }
     } else {
       Object.assign(findQuery, {
-        blocked: false,
+        // blocked: false,
         disputed: false,
       });
     }
@@ -294,13 +294,13 @@ module.exports = {
           break;
         default:
           Object.assign(ctx.query, {
-            blocked: false
+            // blocked: false
           });
           break;
       }
     } else {
       Object.assign(ctx.query, {
-        blocked: false
+        // blocked: false
       });
     }
 
