@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/comments": {
+    "/moderations": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Comment"
+                    "$ref": "#/components/schemas/Moderation"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Moderation"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Moderation"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Moderation"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewComment"
+                "$ref": "#/components/schemas/NewModeration"
               }
             }
           }
         }
       }
     },
-    "/comments/count": {
+    "/moderations/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Moderation"
         ],
         "parameters": []
       }
     },
-    "/comments/{id}": {
+    "/moderations/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Moderation"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Moderation"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Comment"
+                  "$ref": "#/components/schemas/Moderation"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Moderation"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewComment"
+                "$ref": "#/components/schemas/NewModeration"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Moderation"
         ],
         "parameters": [
           {
@@ -511,7 +511,7 @@
         ]
       }
     },
-    "/comments/by-user/{userId}": {
+    "/moderations/byCommentId/{comment}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -563,11 +563,11 @@
         },
         "summary": "",
         "tags": [
-          "Comment"
+          "Moderation"
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "comment",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -582,65 +582,60 @@
   },
   "components": {
     "schemas": {
-      "Comment": {
+      "Moderation": {
         "required": [
-          "id",
-          "comment"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "comment": {
+          "status": {
             "type": "string",
-            "maxLength": 1000,
-            "minLength": 3
+            "enum": [
+              "active",
+              "blocked",
+              "disputed"
+            ]
           },
-          "debate": {
+          "reason": {
+            "type": "string"
+          },
+          "comment": {
             "required": [
               "id",
-              "title",
-              "shortDescription",
-              "published",
-              "archiveDate",
-              "archived"
+              "comment"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "title": {
+              "comment": {
                 "type": "string"
               },
-              "subTitle": {
+              "debate": {
                 "type": "string"
               },
-              "shortDescription": {
+              "moderator": {
                 "type": "string"
               },
-              "articleA": {
+              "user": {
                 "type": "string"
               },
-              "articleB": {
+              "parent": {
                 "type": "string"
               },
-              "page": {
-                "type": "string"
-              },
-              "comments": {
+              "replies": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "published": {
-                "type": "boolean"
-              },
-              "archiveDate": {
+              "moderationComment": {
                 "type": "string"
               },
-              "archived": {
-                "type": "boolean"
+              "moderation": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"
@@ -696,240 +691,27 @@
                 "type": "boolean"
               }
             }
-          },
-          "user": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "avatar": {
-                "type": "string"
-              },
-              "firstName": {
-                "type": "string"
-              },
-              "lastName": {
-                "type": "string"
-              },
-              "avatarOriginal": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "parent": {
-            "required": [
-              "id",
-              "comment"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "comment": {
-                "type": "string"
-              },
-              "debate": {
-                "type": "string"
-              },
-              "moderator": {
-                "type": "string"
-              },
-              "user": {
-                "type": "string"
-              },
-              "parent": {
-                "type": "string"
-              },
-              "replies": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "moderationComment": {
-                "type": "string"
-              },
-              "moderation": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "replies": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "comment"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "comment": {
-                  "type": "string"
-                },
-                "debate": {
-                  "type": "string"
-                },
-                "moderator": {
-                  "type": "string"
-                },
-                "user": {
-                  "type": "string"
-                },
-                "parent": {
-                  "type": "string"
-                },
-                "replies": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "moderationComment": {
-                  "type": "string"
-                },
-                "moderation": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "moderationComment": {
-            "type": "string"
-          },
-          "moderation": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "active",
-                  "blocked",
-                  "disputed"
-                ]
-              },
-              "reason": {
-                "type": "string"
-              },
-              "comment": {
-                "type": "string"
-              },
-              "moderator": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
-      "NewComment": {
-        "required": [
-          "comment"
-        ],
+      "NewModeration": {
         "properties": {
-          "comment": {
+          "status": {
             "type": "string",
-            "maxLength": 1000,
-            "minLength": 3
+            "enum": [
+              "active",
+              "blocked",
+              "disputed"
+            ]
           },
-          "debate": {
+          "reason": {
+            "type": "string"
+          },
+          "comment": {
             "type": "string"
           },
           "moderator": {
             "type": "string"
-          },
-          "user": {
-            "type": "string"
-          },
-          "parent": {
-            "type": "string"
-          },
-          "replies": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "moderationComment": {
-            "type": "string"
-          },
-          "moderation": {
-            "type": "string"
-          },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -943,7 +725,7 @@
   },
   "tags": [
     {
-      "name": "Comment"
+      "name": "Moderation"
     }
   ]
 }

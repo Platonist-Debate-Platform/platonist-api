@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/moderations",
+      "handler": "moderation.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/moderations/count",
+      "handler": "moderation.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/moderations/:id",
+      "handler": "moderation.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/moderations",
+      "handler": "moderation.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/moderations/:id",
+      "handler": "moderation.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/moderations/:id",
+      "handler": "moderation.delete",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/moderations/byCommentId/:comment",
+      "handler": "moderation.byCommentId",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

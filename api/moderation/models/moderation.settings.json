@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "moderations",
+  "info": {
+    "name": "moderation"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "blocked",
+        "disputed"
+      ]
+    },
+    "reason": {
+      "type": "text"
+    },
+    "comment": {
+      "via": "moderation",
+      "model": "comment"
+    },
+    "moderator": {
+      "plugin": "admin",
+      "model": "user"
+    }
+  }
+}
