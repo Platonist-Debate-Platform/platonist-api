@@ -689,6 +689,9 @@
               },
               "blocked": {
                 "type": "boolean"
+              },
+              "preferedLanguage": {
+                "type": "string"
               }
             }
           }
