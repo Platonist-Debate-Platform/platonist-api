@@ -9,7 +9,8 @@
         "port": 3306,
         "username": "platonist-staging",
         "password": "L!6HUH^tcv#&",
-        "database": "platonist_staging"
+        "database": "platonist_staging",
+        "charset": "utf8mb4"
       },
       "options": {}
     }
